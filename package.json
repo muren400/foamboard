@@ -1,0 +1,34 @@
+{
+  "name": "gaze",
+  "version": "1.0.0-alpha.1",
+  "description": "online IFC modelchecker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c ./rollup.config.js",
+    "watch": "rollup -w -c ./rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muren400/gaze.git"
+  },
+  "keywords": [
+    "BIM"
+  ],
+  "author": "Andreas Baumann",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/muren400/gaze/issues"
+  },
+  "homepage": "https://github.com/muren400/gaze#readme",
+  "dependencies": {
+    "bcf-utils": "file:../bcf-utils",
+    "jszip": "^3.7.1",
+    "three": "^0.134.0",
+    "web-ifc-three": "^0.0.83"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "rollup": "^2.60.1"
+  }
+}

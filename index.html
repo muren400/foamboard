@@ -1,0 +1,38 @@
+<head>
+    <meta charset="utf-8">
+    <title>Gaze</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script type="text/javascript" src="node_modules/jszip/dist/jszip.min.js"></script>
+</head>
+
+<body>
+    <nav id="top-nav">
+        <div class="nav-button">
+            <label for="file-input-ifc" class="file-upload-button">
+                Open IFC File
+            </label>
+            <input type="file" name="load ifc" id="file-input-ifc" class="file-input" />
+        </div>
+        <div class="nav-button">
+            <label for="file-input-bcf" class="file-upload-button">
+                Open BCF File
+            </label>
+            <input type="file" name="load bcf" id="file-input-bcf" class="file-input" />
+        </div>
+    </nav>
+
+    <div id="main-content">
+        <div id="ifc-panel">
+            <canvas id="three-canvas"></canvas>
+        </div>
+        
+        <div class="splitter vertical-splitter left-splitter">
+            <div class="vertical-splitter-thumb"></div>
+        </div>
+        
+        <div id="bcf-panel">
+        </div>
+    </div>
+
+    <script src="src/bundle.js"></script>
+</body>
