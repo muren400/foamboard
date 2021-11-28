@@ -1,36 +1,65 @@
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gaze</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="src/bundle.css">
+    <link rel="stylesheet" href="styles/styles.scss">
     <script type="text/javascript" src="node_modules/jszip/dist/jszip.min.js"></script>
 </head>
 
 <body>
-    <nav id="top-nav">
-        <div class="nav-button">
-            <label for="file-input-ifc" class="file-upload-button">
-                Open IFC File
-            </label>
-            <input type="file" name="load ifc" id="file-input-ifc" class="file-input" />
-        </div>
-        <div class="nav-button">
-            <label for="file-input-bcf" class="file-upload-button">
-                Open BCF File
-            </label>
-            <input type="file" name="load bcf" id="file-input-bcf" class="file-input" />
-        </div>
-    </nav>
+    <div class="container-fluid p-0 h-100">
+        <nav class="navbar navbar-expand navbar-dark bg-secondary text-light p-0">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="./res/images/logo.svg" alt="" width="30" height="24">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <label for="file-input-ifc" class="file-upload-button">
+                                Open IFC File
+                            </label>
+                            <input type="file" name="load ifc" id="file-input-ifc" class="file-input" />
+                        </li>
+                        <li class="nav-item">
+                            <label for="file-input-bcf" class="file-upload-button">
+                                Open BCF File
+                            </label>
+                            <input type="file" name="load bcf" id="file-input-bcf" class="file-input" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-    <div id="main-content">
-        <div id="ifc-panel">
-            <canvas id="three-canvas"></canvas>
-        </div>
-        
-        <div class="splitter vertical-splitter left-splitter">
-            <div class="vertical-splitter-thumb"></div>
-        </div>
-        
-        <div id="bcf-panel">
+        <div class="h-100" id="main-content">
+            <div id="ifc-panel">
+                <div id="model-panel">
+                    <canvas id="three-canvas"></canvas>
+                </div>
+
+                <div class="splitter horizontal-splitter bottom-splitter" id="ifc-property-splitter">
+                    <div class="horizontal-splitter-thumb"></div>
+                </div>
+
+                <div id="ifc-property-panel">
+                    <ul class="nav nav-tabs" id="ifc-property-tabs" role="tablist">
+                    </ul>
+                    <div class="tab-content" id="ifc-property-contents">
+                    </div>
+                </div>
+            </div>
+
+            <div class="splitter vertical-splitter left-splitter" id="bcf-splitter">
+                <div class="vertical-splitter-thumb"></div>
+            </div>
+
+            <div id="bcf-panel">
+                <div id="bcf-topics">
+
+                </div>
+            </div>
         </div>
     </div>
 

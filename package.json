@@ -23,7 +23,9 @@
   "homepage": "https://github.com/muren400/gaze#readme",
   "dependencies": {
     "bcf-utils": "file:../bcf-utils",
+    "bootstrap": "^5.1.3",
     "jszip": "^3.7.1",
+    "rollup-plugin-import-css": "^3.0.2",
     "three": "^0.134.0",
     "web-ifc-three": "^0.0.83"
   },

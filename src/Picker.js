@@ -1,7 +1,8 @@
 import { WebGLRenderTarget, Raycaster } from 'three';
 
-export class Picker {
-    constructor(canvas, scene, camera, renderer) {
+export default class Picker {
+    constructor(selectionModel, canvas, scene, camera, renderer) {
+        this.selectionModel = selectionModel;
         this.canvas = canvas;
         this.scene = scene;
         this.camera = camera;
@@ -36,9 +37,8 @@ export class Picker {
         var position = this.getPickPosition(event);
 
         // restore the color if there is a picked object
-        if (this.pickedObject) {
-            // this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
-            this.pickedObject = undefined;
+        if (this.pickedIfcObject != null) {
+            this.pickedIfcObject = undefined;
         }
 
         // cast a ray through the frustum
@@ -50,15 +50,17 @@ export class Picker {
         }
 
         // pick the first object. It's the closest one
-        this.pickedObject = intersectedObjects[0];
-        this.pickedIfcObject = this.pickedObject.object;
-        if(this.pickedIfcObject == null || this.pickedIfcObject.ifcManager == null) {
+        const intersectedObject = intersectedObjects[0];
+        this.pickedIfcObject = intersectedObject.object;
+        if (this.pickedIfcObject == null || this.pickedIfcObject.ifcManager == null) {
             return;
         }
 
         const ifcManager = this.pickedIfcObject.ifcManager;
-        const expressID = ifcManager.getExpressId(this.pickedIfcObject.geometry, this.pickedObject.faceIndex);
+        const expressID = ifcManager.getExpressId(this.pickedIfcObject.geometry, intersectedObject.faceIndex);
         const modelID = this.pickedIfcObject.modelID;
+
+        this.selectionModel.selectObject(modelID, expressID);
 
         const props = await ifcManager.getItemProperties(modelID, expressID, true);
         props.psets = await ifcManager.getPropertySets(modelID, expressID, true);
