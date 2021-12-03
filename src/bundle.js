@@ -97931,9 +97931,9 @@ class IfcView {
 
         this.camera.lookAt(props.target);
 
-        this.camera.position.x = -this.globalTranslation.x;
-        this.camera.position.y = -this.globalTranslation.y;
-        this.camera.position.z = -this.globalTranslation.z;
+        this.camera.position.x -= this.globalTranslation.x;
+        this.camera.position.y -= this.globalTranslation.y;
+        this.camera.position.z -= this.globalTranslation.z;
     }
 
     setProgress(value) {
