@@ -1,5 +1,5 @@
 {
-  "name": "gaze",
+  "name": "@muren400/foamboard",
   "version": "1.0.0-alpha.1",
   "description": "online IFC modelchecker",
   "main": "index.js",

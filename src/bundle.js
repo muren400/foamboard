@@ -1,3 +1,601 @@
+const bcf_2_1 = {
+  Markup: {
+             children: [
+      {
+        name: "Header",
+        type: "Header",
+      },
+      {
+        name: "Topic",
+        type: "Topic",
+      },
+      {
+        name: "Comment",
+        type: "Comment",
+        list: true,
+      },
+      {
+        name: "Viewpoints",
+        type: "Viewpoints",
+        list: true,
+      },
+    ],
+  },
+  Header: {
+    children: [
+      {
+        name: "File",
+        type: "File",
+        list: true,
+      },
+    ],
+  },
+  File: {
+    children: [
+      {
+        name: "Filename",
+        type: "string",
+      },
+      {
+        name: "Date",
+        type: "string",
+      },
+      {
+        name: "Reference",
+        type: "string",
+      },
+    ],
+    attributes: ["IfcProject", "IfcSpatialStructureElement", "isExternal"],
+  },
+  Topic: {
+    children: [
+      {
+        name: "ReferenceLink",
+        type: "string",
+        list: true,
+      },
+      {
+        name: "Title",
+        type: "string",
+      },
+      {
+        name: "Priority",
+        type: "string",
+      },
+      {
+        name: "Index",
+        type: "string",
+      },
+      {
+        name: "Labels",
+        type: "string",
+        list: true,
+      },
+      {
+        name: "CreationDate",
+        type: "string",
+      },
+      {
+        name: "CreationAuthor",
+        type: "string",
+      },
+      {
+        name: "ModifiedDate",
+        type: "string",
+      },
+      {
+        name: "ModifiedAuthor",
+        type: "string",
+      },
+      {
+        name: "DueDate",
+        type: "string",
+      },
+      {
+        name: "AssignedTo",
+        type: "string",
+      },
+      {
+        name: "Description",
+        type: "string",
+      },
+      {
+        name: "Stage",
+        type: "string",
+      },
+      {
+        name: "BimSnippet",
+        type: "BimSnippet",
+      },
+      {
+        name: "DocumentReference",
+        type: "DocumentReference",
+        list: true,
+      },
+      {
+        name: "RelatedTopic",
+        type: "RelatedTopic",
+        list: true,
+      },
+    ],
+    attributes: ["Guid", "TopicType", "TopicStatus"],
+  },
+  BimSnippet: {
+    children: [
+      {
+        name: "Reference",
+        type: "string",
+      },
+      {
+        name: "ReferenceSchema",
+        type: "string",
+      },
+    ],
+    attributes: ["SnippetType", "IsExternal"],
+  },
+  DocumentReference: {
+    children: [
+      {
+        name: "ReferencedDocument",
+        type: "string",
+      },
+      {
+        name: "Description",
+        type: "string",
+      },
+    ],
+    attributes: ["Guid", "IsExternal"],
+  },
+  RelatedTopic: {
+    attributes: ["GUID"],
+  },
+  Comment: {
+    children: [
+      {
+        name: "Date",
+        type: "string",
+      },
+      {
+        name: "Author",
+        type: "string",
+      },
+      {
+        name: "Comment",
+        type: "string",
+      },
+      {
+        name: "Viewpoint",
+        type: "Viewpoint",
+      },
+      {
+        name: "ModifiedDate",
+        type: "string",
+      },
+      {
+        name: "ModifiedAuthor",
+        type: "string",
+      },
+    ],
+  },
+  Viewpoint: {
+    attributes: ["Guid"],
+  },
+  Viewpoints: {
+    attributes: ["Guid"],
+    children: [
+      {
+        name: "Viewpoint",
+        type: "string",
+      },
+      {
+        name: "Snapshot",
+        type: "string",
+      },
+      {
+        name: "Index",
+        type: "string",
+      },
+    ],
+  },
+  VisualizationInfo: {
+    attributes: ["Guid"],
+    children: [
+      {
+        name: "Components",
+        type: "Components",
+      },
+      {
+        name: "PerspectiveCamera",
+        type: "PerspectiveCamera",
+      },
+      {
+        name: "Lines",
+        type: "Lines",
+      },
+      {
+        name: "ClippingPlanes",
+        type: "ClippingPlanes",
+      },
+      {
+        name: "Bitmap",
+        type: "Bitmap",
+      },
+    ],
+  },
+  "OrthogonalCamera ": {
+    children: [
+      {
+        name: "CameraViewPoint",
+        type: "Vector3f",
+      },
+      {
+        name: "CameraDirection",
+        type: "Vector3f",
+      },
+      {
+        name: "CameraUpVector",
+        type: "Vector3f",
+      },
+      {
+        name: "ViewToWorldScale",
+        type: "number",
+      },
+    ],
+  },
+  PerspectiveCamera: {
+    children: [
+      {
+        name: "CameraViewPoint",
+        type: "Vector3f",
+      },
+      {
+        name: "CameraDirection",
+        type: "Vector3f",
+      },
+      {
+        name: "CameraUpVector",
+        type: "Vector3f",
+      },
+      {
+        name: "FieldOfView",
+        type: "number",
+      },
+    ],
+  },
+  Components: {
+    children: [
+      {
+        name: "ViewSetupHints",
+        type: "ViewSetupHints",
+      },
+      {
+        name: "Selection",
+        type: "Selection",
+      },
+      {
+        name: "Visibility",
+        type: "Visibility",
+      },
+      {
+        name: "Coloring",
+        type: "Coloring",
+      },
+    ],
+  },
+  ViewSetupHints: {
+    attributes: ["SpacesVisible", "SpaceBoundariesVisible", "OpeningsVisible"],
+  },
+  Selection: {
+    children: [
+      {
+        name: "Component",
+        type: "Component",
+        list: true
+      },
+    ],
+  },
+  Visibility: {
+    attributes: ["DefaultVisibility"],
+    children: [
+      {
+        name: "Component",
+        type: "Component",
+        list: true
+      },
+    ],
+  },
+  Coloring: {
+    children: [
+      {
+        name: "Color",
+        type: "Color",
+      },
+    ],
+  },
+  Color: {
+    attributes: ["Color"],
+    children: [
+      {
+        name: "Component",
+        type: "Component",
+      },
+    ],
+  },
+  Component: {
+    attributes: ["IfcGuid"],
+  },
+  Lines: {
+    children: [
+      {
+        name: "Line",
+        type: "Line",
+      },
+    ],
+  },
+  Line: {
+    children: [
+      {
+        name: "StartPoint",
+        type: "Vector3f",
+      },
+      {
+        name: "EndPoint",
+        type: "Vector3f",
+      },
+    ],
+  },
+  ClippingPlanes: {
+    children: [
+      {
+        name: "ClippingPlane",
+        type: "ClippingPlane",
+      },
+    ],
+  },
+  ClippingPlane: {
+    children: [
+      {
+        name: "Location",
+        type: "Vector3f",
+      },
+      {
+        name: "Direction",
+        type: "Vector3f",
+      },
+    ],
+  },
+  Vector3f: {
+    children: [
+      {
+        name: "X",
+        type: "number",
+      },
+      {
+        name: "Y",
+        type: "number",
+      },
+      {
+        name: "Z",
+        type: "number",
+      },
+    ],
+  },
+};
+
+class Markup {
+    constructor() {
+        this.Viewpoints = [];
+        this.Comment = [];
+        this.VisualizationInfos = new Map();
+        this.Snapshots = new Map();
+    }
+
+    addVisualizationInfo(name, visualizationInfo) {
+        this.VisualizationInfos.set(name, visualizationInfo);
+    }
+
+    addSnapshot(name, snapshot) {
+        this.Snapshots.set(name, 'data:image/png;base64,' + snapshot);
+    }
+}
+
+class XmlReader {
+    static instance;
+
+    static getInstance() {
+        if(XmlReader.instance) {
+            return XmlReader.instance;
+        }
+
+        return new XmlReader();
+    }
+
+    constructor() {
+        XmlReader.instance = this;
+    }
+
+    read(target, typename, xml, schema) {
+        if (target == null || xml == null || schema == null) {
+            return;
+        }
+
+        const type = schema[typename];
+
+        this.readAttributes(target, xml, schema, type);
+        this.readChildren(target, xml, schema, type);
+    }
+
+    readAttributes(target, xml, schema, type) {
+        if (target == null || xml == null || schema == null || type == null || type.attributes == null) {
+            return;
+        }
+
+        type.attributes.forEach(attribute => {
+            target[attribute] = xml.getAttribute(attribute);
+        });
+    }
+
+    readChildren(target, xml, schema, type) {
+        if (target == null || xml == null || schema == null || type == null || type.children == null) {
+            return;
+        }
+
+        type.children.forEach(child => {
+            if(child.list === true) {
+                const children = xml.querySelectorAll(':scope > ' + child.name);
+                if(children == null || children.length < 1) {
+                    return;
+                }
+
+                target[child.name] = [];
+                children.forEach(childXml => {
+                    target[child.name].push(this.readChild(child, childXml, schema));
+                });
+            } else {
+                const childXml = xml.querySelector(child.name);
+                if(childXml == null) {
+                    return;
+                }
+
+                target[child.name] = this.readChild(child, childXml, schema);
+            }
+        });
+    }
+
+    readChild(child, childXml, schema) {
+        if (child.type === 'string') {
+            return childXml.innerHTML;
+        } else if (child.type === 'number') {
+            return Number(childXml.innerHTML);
+        } else if (schema[child.type] != null) {
+            return BcfFactory.getInstance().createInstanceFromXml(child.type, childXml, schema);
+        }
+    }
+}
+
+class BcfFactory {
+  static instance;
+
+  static types = {
+    "Markup": Markup
+  }
+
+  static getInstance() {
+    if (BcfFactory.instance) {
+      return BcfFactory.instance;
+    }
+
+    return new BcfFactory();
+  }
+
+  constructor() {
+    BcfFactory.instance = this;
+  }
+
+  createInstanceFromXml(typename, xml, schema) {
+    let type = BcfFactory.types[typename];
+
+    if (type == null) {
+      type = Object;
+    }
+
+    const instance = new type();
+    XmlReader.getInstance().read(instance, typename, xml, schema);
+    return instance;
+  }
+}
+
+class Bcf {
+    constructor() {
+        this.markups = new Map();
+        this.viewpoints = new Map();
+    }
+
+    addMarkupFromXml(bcfXml) {
+        const markupXml = bcfXml.querySelector('Markup');
+        const markup = BcfFactory.getInstance().createInstanceFromXml('Markup', markupXml, bcf_2_1);
+        this.markups.set(markup.Topic.Guid, markup);
+
+        return markup;
+    }
+
+    addVisualizationInfoFromXml(topicGuid, filename, bcfvXml) {
+        const markup = this.markups.get(topicGuid);
+        if(markup == null) {
+            return;
+        }
+
+        const visualizationInfoXml = bcfvXml.querySelector('VisualizationInfo');
+        const visualizationInfo = BcfFactory.getInstance().createInstanceFromXml('VisualizationInfo', visualizationInfoXml, bcf_2_1);
+        markup.addVisualizationInfo(filename, visualizationInfo);
+
+        return visualizationInfo;
+    }
+}
+
+class BcfLoader {
+  constructor() {}
+
+  loadFile(file) {
+    return new Promise((resolve) => {
+      const bcf = new Bcf();
+
+      JSZip.loadAsync(file).then(async function (zip) {
+        const bcfPromises = [];
+        const bcfvPromises = [];
+        const pngPromises = [];
+
+        const parser = new DOMParser();
+
+        zip.forEach(function (relativePath, zipEntry) {
+          if (zipEntry.name.endsWith(".bcf") == false) {
+            return;
+          }
+
+          bcfPromises.push(new Promise(async markupResolve => {
+            const bcfContent = await zipEntry.async("string");
+            const xmlBcfContent = parser.parseFromString(bcfContent, "text/xml");
+            console.log("add markup");
+            markupResolve(bcf.addMarkupFromXml(xmlBcfContent));
+          }));
+        });
+        await Promise.all(bcfPromises);
+
+        zip.forEach(function (relativePath, zipEntry) {
+          console.log("Reading: " + relativePath);
+          if (zipEntry.name.endsWith(".bcfv")) {
+            bcfvPromises.push(new Promise(async bcfvResolve => {
+              const splitName = zipEntry.name.split("/");
+              const bcfGuid = splitName[0];
+              const bcfvContent = await zipEntry.async("string");
+              const xmlBcfvContent = parser.parseFromString(bcfvContent, "text/xml");
+              bcfvResolve(bcf.addVisualizationInfoFromXml(bcfGuid, splitName[1], xmlBcfvContent));
+            }));
+          }
+          
+          if (zipEntry.name.endsWith(".png")) {
+            pngPromises.push(new Promise(async pngResolve => {
+              const splitName = zipEntry.name.split("/");
+              const bcfGuid = splitName[0];
+              const markup = bcf.markups.get(bcfGuid);
+              if(markup == null) {
+                return;
+              }
+
+              const pngContent = await zipEntry.async("base64");
+              pngResolve(markup.addSnapshot(splitName[1], pngContent));
+            }));
+          }
+        });
+        await Promise.all(bcfvPromises);
+        await Promise.all(pngPromises);
+
+        resolve(bcf);
+      });
+    });
+  }
+}
+
 /**
  * @license
  * Copyright 2010-2021 Three.js Authors
@@ -42177,6 +42775,338 @@ if ( typeof window !== 'undefined' ) {
 
 	}
 
+}
+
+class Markers {
+    static get LATE() {return 'LATE'}
+    static get CAMERA() {return 'CAMERA'}
+
+    constructor(scene) {
+        this.scene = scene;
+
+        this.materials = new Map();
+        this.materials.set(Markers.LATE, this.createMarkerMaterial('../res/images/warning.png'));
+        this.materials.set(Markers.CAMERA, this.createMarkerMaterial('../res/images/camera.png'));
+    }
+
+    createMarkerMaterial(src) {
+        const map = new TextureLoader().load(src);
+        const material = new SpriteMaterial({ map: map, sizeAttenuation: false, depthTest: false });
+        return material;
+    }
+
+    addMarker(type, position) {
+        const sprite = new Sprite(this.materials.get(type));
+        sprite.position.set( position.x, position.y, position.z );
+        const spriteScale = 0.08;
+        sprite.scale.set(spriteScale, spriteScale, spriteScale);
+        this.scene.add(sprite);
+    }
+}
+
+class Splitter {
+    constructor(splitterDiv) {
+        this.splitterDiv = splitterDiv;
+        this.parentContainer = this.splitterDiv.parentElement;
+        this.prevPanel = this.splitterDiv.previousElementSibling;
+        this.nextPanel = this.splitterDiv.nextElementSibling;
+
+        this.splitterDiv.style.backgroundColor = window.getComputedStyle(this.nextPanel, null).getPropertyValue('background-color');
+
+        this.dragging = false;
+
+        this.splitterDiv.addEventListener('mousedown', (e) => {
+            this.dragging = true;
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            this.dragging = false;
+        });
+
+        document.addEventListener('mouseleave', (e) => {
+            this.dragging = false;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (this.dragging !== true) {
+                return;
+            }
+
+            this.resize(e);
+        });
+
+        this.resize();
+    }
+
+    resize(e) {
+        if (this.splitterDiv.classList.contains('left-splitter')) {
+            this.moveLeft(e);
+        } else if (this.splitterDiv.classList.contains('bottom-splitter')) {
+            this.moveBottom(e);
+        }
+
+        if (e != null && typeof this.onResize === 'function') {
+            this.onResize();
+        }
+    }
+
+    moveLeft(e) {
+        if (this.splitterPosition == null) {
+            this.splitterPosition = this.nextPanel.clientWidth;
+        }
+
+        if (this.prevPanel.style.display === 'none') {
+            this.nextPanel.style.width = '100%';
+            return;
+        }
+
+        if (this.nextPanel.style.display === 'none') {
+            this.prevPanel.style.width = '100%';
+            return;
+        }
+
+        const movementX = e == null ? 0 : e.movementX;
+        const parentWidth = this.parentContainer.clientWidth;
+        this.splitterPosition -= movementX;
+        this.nextPanel.style.width = this.splitterPosition;
+
+        this.prevPanel.style.width = parentWidth - this.splitterPosition - this.splitterDiv.clientWidth;
+    }
+
+    moveBottom(e) {
+        if (this.splitterPosition == null) {
+            this.splitterPosition = this.nextPanel.clientHeight;
+        }
+
+        if (this.prevPanel.style.display === 'none') {
+            this.nextPanel.style.height = '100%';
+            return;
+        }
+
+        if (this.nextPanel.style.display === 'none') {
+            this.prevPanel.style.height = '100%';
+            return;
+        }
+
+        const movement = e == null ? 0 : e.movementY;
+        const parentHeight = this.parentContainer.clientHeight;
+        this.splitterPosition -= movement;
+        this.nextPanel.style.height = this.splitterPosition;
+
+        this.prevPanel.style.height = parentHeight - this.splitterPosition - this.splitterDiv.clientHeight;
+    }
+
+    hideLeft() {
+        this.nextPanel.style.display = 'none';
+        this.splitterDiv.style.display = 'none';
+
+        this.prevPanel.style.width = '100%';
+
+        this.onResize();
+    }
+
+    showLeft() {
+        this.nextPanel.style.display = 'block';
+        this.splitterDiv.style.display = 'block';
+
+        this.resize({ movementX: 0, movementY: 0 });
+    }
+}
+
+class BcfView {
+    constructor(parent) {
+        this.parent = parent;
+        this.bcfPanel = document.getElementById('bcf-panel');
+        this.topicsContainer = document.getElementById('bcf-topics');
+
+        this.bcfSplitter = document.getElementById('bcf-splitter');
+        this.splitter = new Splitter(this.bcfSplitter);
+        this.splitter.onResize = () => {
+            this.parent.resize();
+        };
+
+        this.hideBcfPanel();
+
+
+        this.createBcfLoader();
+    }
+
+    resize() {
+        this.splitter.resize();
+    }
+
+    hideBcfPanel() {
+        this.splitter.hideLeft();
+    }
+
+    showBcfPanel() {
+        this.splitter.showLeft();
+    }
+
+    createBcfLoader() {
+        const bcfLoader = new BcfLoader();
+        const inputBcf = document.getElementById("file-input-bcf");
+        inputBcf.addEventListener(
+            "change",
+            (changed) => {
+                const file = changed.target.files[0];
+                bcfLoader.loadFile(file).then(bcf => {
+                    this.showBcfPanel();
+                    this.loadTopics(bcf);
+                    this.addMarkers(bcf);
+                });
+            },
+            false
+        );
+    }
+
+    loadTopics(bcf) {
+        while (this.topicsContainer.firstChild) {
+            this.topicsContainer.removeChild(this.topicsContainer.firstChild);
+        }
+
+        for (let markup of bcf.markups.values()) {
+            const topic = markup.Topic;
+            const topicContainer = document.createElement('div');
+            topicContainer.classList.add('snapshot-thumbs-container');
+            topicContainer.style.marginBottom = "5px";
+            this.topicsContainer.appendChild(topicContainer);
+
+            const title = document.createElement('p');
+            title.classList.add('snapshot-thumbs-title');
+            title.innerHTML = topic.Title;
+            topicContainer.appendChild(title);
+
+            // this.addTopicAttribute('Guid', topic, topicContainer);
+            // this.addTopicAttribute('TopicType', topic, topicContainer);
+            // this.addTopicAttribute('TopicStatus', topic, topicContainer);
+            // this.addTopicAttribute('CreationDate', topic, topicContainer);
+            // this.addTopicAttribute('CreationAuthor', topic, topicContainer);
+            // this.addTopicAttribute('Priority', topic, topicContainer);
+            // this.addTopicAttribute('Index', topic, topicContainer);
+            // this.addTopicAttribute('ModifiedDate', topic, topicContainer);
+            // this.addTopicAttribute('ModifiedAuthor', topic, topicContainer);
+
+            const snapshotsDiv = document.createElement('div');
+            snapshotsDiv.classList.add('snapshot-thumbs');
+            topicContainer.appendChild(snapshotsDiv);
+
+            markup.Viewpoints.forEach(viewpoint => {
+                this.addTopicViewpoint(viewpoint, markup, snapshotsDiv);
+            });
+        }
+    }
+
+    addTopicAttribute(attribute, topic, target) {
+        const p = document.createElement('p');
+        p.innerHTML = attribute + ': ' + topic[attribute];
+        target.appendChild(p);
+    }
+
+    addTopicViewpoint(viewpoint, markup, target) {
+        const snapshotDiv = document.createElement('div');
+        snapshotDiv.classList.add('snapshot-thumb');
+        snapshotDiv.addEventListener('dblclick', (e) => {
+            const vsInfo = markup.VisualizationInfos.get(viewpoint.Viewpoint);
+            if (vsInfo == null) {
+                console.log('no VisualizationInfo');
+                return;
+            }
+
+            console.log(vsInfo);
+
+            if (vsInfo.PerspectiveCamera != null) {
+                const camera = vsInfo.PerspectiveCamera;
+                const cameraViewPoint = camera.CameraViewPoint;
+                const cameraDirection = camera.CameraDirection;
+
+                this.parent.ifcView.setCamera({
+                    position: {
+                        x: cameraViewPoint.X,
+                        y: cameraViewPoint.Z,
+                        z: -cameraViewPoint.Y,
+                    },
+                    target: {
+                        x: cameraViewPoint.X + cameraDirection.X,
+                        y: cameraViewPoint.Z + cameraDirection.Z,
+                        z: cameraViewPoint.Y - cameraDirection.Y,
+                    }
+                });
+            }
+
+            const components = vsInfo.Components.Selection.Component;
+            let removePrevious = true;
+            components.forEach(component => {
+                this.parent.ifcView.selectionModel.selectObjectByGuid(component.IfcGuid, removePrevious);
+                removePrevious = false;
+            });
+        });
+        target.appendChild(snapshotDiv);
+
+        const snapshot = markup.Snapshots.get(viewpoint.Snapshot);
+        const img = document.createElement('img');
+        img.src = snapshot;
+        snapshotDiv.appendChild(img);
+
+        // this.addComments(viewpoint, markup, snapshotDiv);
+    }
+
+    addComments(viewpoint, markup, target) {
+        markup.Comment.forEach(comment => {
+            if (comment.Viewpoint == null || comment.Viewpoint.Guid == null) {
+                return;
+            }
+
+            if (comment.Viewpoint.Guid !== viewpoint.Guid) {
+                return;
+            }
+
+            const commentDiv = document.createElement('div');
+            commentDiv.style.border = "1px solid #000";
+            commentDiv.style.padding = "5px";
+            commentDiv.style.margin = "5px";
+            target.appendChild(commentDiv);
+
+            const authorP = document.createElement('p');
+            authorP.innerHTML = 'Author: ' + comment.Author;
+            commentDiv.appendChild(authorP);
+
+            const dateP = document.createElement('p');
+            dateP.innerHTML = 'Date: ' + comment.Date;
+            commentDiv.appendChild(dateP);
+
+            const commentP = document.createElement('p');
+            commentP.innerHTML = 'Comment: ' + comment.Comment;
+            commentDiv.appendChild(commentP);
+        });
+    }
+
+    addMarkers(bcf) {
+        for (let markup of bcf.markups.values()) {
+            markup.Viewpoints.forEach(viewpoint => {
+                const vsInfo = markup.VisualizationInfos.get(viewpoint.Viewpoint);
+                if (vsInfo == null) {
+                    return;
+                }
+
+                console.log(vsInfo);
+
+                if (vsInfo.PerspectiveCamera != null) {
+                    const camera = vsInfo.PerspectiveCamera;
+                    const cameraViewPoint = camera.CameraViewPoint;
+                    camera.CameraDirection;
+
+                    const position = {
+                        x: cameraViewPoint.X,
+                        y: cameraViewPoint.Z,
+                        z: -cameraViewPoint.Y,
+                    };
+
+                    this.parent.ifcView.markers.addMarker(Markers.CAMERA, position);
+                }
+            });
+        }
+    }
 }
 
 // This set of controls performs orbiting, dollying (zooming), and panning.
@@ -89541,603 +90471,6 @@ class IFCLoader extends Loader {
 
 }
 
-const bcf_2_1 = {
-  Markup: {
-             children: [
-      {
-        name: "Header",
-        type: "Header",
-      },
-      {
-        name: "Topic",
-        type: "Topic",
-      },
-      {
-        name: "Comment",
-        type: "Comment",
-        list: true,
-      },
-      {
-        name: "Viewpoints",
-        type: "Viewpoints",
-        list: true,
-      },
-    ],
-  },
-  Header: {
-    children: [
-      {
-        name: "File",
-        type: "File",
-        list: true,
-      },
-    ],
-  },
-  File: {
-    children: [
-      {
-        name: "Filename",
-        type: "string",
-      },
-      {
-        name: "Date",
-        type: "string",
-      },
-      {
-        name: "Reference",
-        type: "string",
-      },
-    ],
-    attributes: ["IfcProject", "IfcSpatialStructureElement", "isExternal"],
-  },
-  Topic: {
-    children: [
-      {
-        name: "ReferenceLink",
-        type: "string",
-        list: true,
-      },
-      {
-        name: "Title",
-        type: "string",
-      },
-      {
-        name: "Priority",
-        type: "string",
-      },
-      {
-        name: "Index",
-        type: "string",
-      },
-      {
-        name: "Labels",
-        type: "string",
-        list: true,
-      },
-      {
-        name: "CreationDate",
-        type: "string",
-      },
-      {
-        name: "CreationAuthor",
-        type: "string",
-      },
-      {
-        name: "ModifiedDate",
-        type: "string",
-      },
-      {
-        name: "ModifiedAuthor",
-        type: "string",
-      },
-      {
-        name: "DueDate",
-        type: "string",
-      },
-      {
-        name: "AssignedTo",
-        type: "string",
-      },
-      {
-        name: "Description",
-        type: "string",
-      },
-      {
-        name: "Stage",
-        type: "string",
-      },
-      {
-        name: "BimSnippet",
-        type: "BimSnippet",
-      },
-      {
-        name: "DocumentReference",
-        type: "DocumentReference",
-        list: true,
-      },
-      {
-        name: "RelatedTopic",
-        type: "RelatedTopic",
-        list: true,
-      },
-    ],
-    attributes: ["Guid", "TopicType", "TopicStatus"],
-  },
-  BimSnippet: {
-    children: [
-      {
-        name: "Reference",
-        type: "string",
-      },
-      {
-        name: "ReferenceSchema",
-        type: "string",
-      },
-    ],
-    attributes: ["SnippetType", "IsExternal"],
-  },
-  DocumentReference: {
-    children: [
-      {
-        name: "ReferencedDocument",
-        type: "string",
-      },
-      {
-        name: "Description",
-        type: "string",
-      },
-    ],
-    attributes: ["Guid", "IsExternal"],
-  },
-  RelatedTopic: {
-    attributes: ["GUID"],
-  },
-  Comment: {
-    children: [
-      {
-        name: "Date",
-        type: "string",
-      },
-      {
-        name: "Author",
-        type: "string",
-      },
-      {
-        name: "Comment",
-        type: "string",
-      },
-      {
-        name: "Viewpoint",
-        type: "Viewpoint",
-      },
-      {
-        name: "ModifiedDate",
-        type: "string",
-      },
-      {
-        name: "ModifiedAuthor",
-        type: "string",
-      },
-    ],
-  },
-  Viewpoint: {
-    attributes: ["Guid"],
-  },
-  Viewpoints: {
-    attributes: ["Guid"],
-    children: [
-      {
-        name: "Viewpoint",
-        type: "string",
-      },
-      {
-        name: "Snapshot",
-        type: "string",
-      },
-      {
-        name: "Index",
-        type: "string",
-      },
-    ],
-  },
-  VisualizationInfo: {
-    attributes: ["Guid"],
-    children: [
-      {
-        name: "Components",
-        type: "Components",
-      },
-      {
-        name: "PerspectiveCamera",
-        type: "PerspectiveCamera",
-      },
-      {
-        name: "Lines",
-        type: "Lines",
-      },
-      {
-        name: "ClippingPlanes",
-        type: "ClippingPlanes",
-      },
-      {
-        name: "Bitmap",
-        type: "Bitmap",
-      },
-    ],
-  },
-  "OrthogonalCamera ": {
-    children: [
-      {
-        name: "CameraViewPoint",
-        type: "Vector3f",
-      },
-      {
-        name: "CameraDirection",
-        type: "Vector3f",
-      },
-      {
-        name: "CameraUpVector",
-        type: "Vector3f",
-      },
-      {
-        name: "ViewToWorldScale",
-        type: "number",
-      },
-    ],
-  },
-  PerspectiveCamera: {
-    children: [
-      {
-        name: "CameraViewPoint",
-        type: "Vector3f",
-      },
-      {
-        name: "CameraDirection",
-        type: "Vector3f",
-      },
-      {
-        name: "CameraUpVector",
-        type: "Vector3f",
-      },
-      {
-        name: "FieldOfView",
-        type: "number",
-      },
-    ],
-  },
-  Components: {
-    children: [
-      {
-        name: "ViewSetupHints",
-        type: "ViewSetupHints",
-      },
-      {
-        name: "Selection",
-        type: "Selection",
-      },
-      {
-        name: "Visibility",
-        type: "Visibility",
-      },
-      {
-        name: "Coloring",
-        type: "Coloring",
-      },
-    ],
-  },
-  ViewSetupHints: {
-    attributes: ["SpacesVisible", "SpaceBoundariesVisible", "OpeningsVisible"],
-  },
-  Selection: {
-    children: [
-      {
-        name: "Component",
-        type: "Component",
-        list: true
-      },
-    ],
-  },
-  Visibility: {
-    attributes: ["DefaultVisibility"],
-    children: [
-      {
-        name: "Component",
-        type: "Component",
-      },
-    ],
-  },
-  Coloring: {
-    children: [
-      {
-        name: "Color",
-        type: "Color",
-      },
-    ],
-  },
-  Color: {
-    attributes: ["Color"],
-    children: [
-      {
-        name: "Component",
-        type: "Component",
-      },
-    ],
-  },
-  Component: {
-    attributes: ["IfcGuid"],
-  },
-  Lines: {
-    children: [
-      {
-        name: "Line",
-        type: "Line",
-      },
-    ],
-  },
-  Line: {
-    children: [
-      {
-        name: "StartPoint",
-        type: "Vector3f",
-      },
-      {
-        name: "EndPoint",
-        type: "Vector3f",
-      },
-    ],
-  },
-  ClippingPlanes: {
-    children: [
-      {
-        name: "ClippingPlane",
-        type: "ClippingPlane",
-      },
-    ],
-  },
-  ClippingPlane: {
-    children: [
-      {
-        name: "Location",
-        type: "Vector3f",
-      },
-      {
-        name: "Direction",
-        type: "Vector3f",
-      },
-    ],
-  },
-  Vector3f: {
-    children: [
-      {
-        name: "X",
-        type: "number",
-      },
-      {
-        name: "Y",
-        type: "number",
-      },
-      {
-        name: "Z",
-        type: "number",
-      },
-    ],
-  },
-};
-
-class Markup {
-    constructor() {
-        this.Viewpoints = [];
-        this.Comment = [];
-        this.VisualizationInfos = new Map();
-        this.Snapshots = new Map();
-    }
-
-    addVisualizationInfo(name, visualizationInfo) {
-        this.VisualizationInfos.set(name, visualizationInfo);
-    }
-
-    addSnapshot(name, snapshot) {
-        this.Snapshots.set(name, 'data:image/png;base64,' + snapshot);
-    }
-}
-
-class XmlReader {
-    static instance;
-
-    static getInstance() {
-        if(XmlReader.instance) {
-            return XmlReader.instance;
-        }
-
-        return new XmlReader();
-    }
-
-    constructor() {
-        XmlReader.instance = this;
-    }
-
-    read(target, typename, xml, schema) {
-        if (target == null || xml == null || schema == null) {
-            return;
-        }
-
-        const type = schema[typename];
-
-        this.readAttributes(target, xml, schema, type);
-        this.readChildren(target, xml, schema, type);
-    }
-
-    readAttributes(target, xml, schema, type) {
-        if (target == null || xml == null || schema == null || type == null || type.attributes == null) {
-            return;
-        }
-
-        type.attributes.forEach(attribute => {
-            target[attribute] = xml.getAttribute(attribute);
-        });
-    }
-
-    readChildren(target, xml, schema, type) {
-        if (target == null || xml == null || schema == null || type == null || type.children == null) {
-            return;
-        }
-
-        type.children.forEach(child => {
-            if(child.list === true) {
-                const children = xml.querySelectorAll(':scope > ' + child.name);
-                if(children == null || children.length < 1) {
-                    return;
-                }
-
-                target[child.name] = [];
-                children.forEach(childXml => {
-                    target[child.name].push(this.readChild(child, childXml, schema));
-                });
-            } else {
-                const childXml = xml.querySelector(child.name);
-                if(childXml == null) {
-                    return;
-                }
-
-                target[child.name] = this.readChild(child, childXml, schema);
-            }
-        });
-    }
-
-    readChild(child, childXml, schema) {
-        if (child.type === 'string') {
-            return childXml.innerHTML;
-        } else if (child.type === 'number') {
-            return Number(childXml.innerHTML);
-        } else if (schema[child.type] != null) {
-            return BcfFactory.getInstance().createInstanceFromXml(child.type, childXml, schema);
-        }
-    }
-}
-
-class BcfFactory {
-  static instance;
-
-  static types = {
-    "Markup": Markup
-  }
-
-  static getInstance() {
-    if (BcfFactory.instance) {
-      return BcfFactory.instance;
-    }
-
-    return new BcfFactory();
-  }
-
-  constructor() {
-    BcfFactory.instance = this;
-  }
-
-  createInstanceFromXml(typename, xml, schema) {
-    let type = BcfFactory.types[typename];
-
-    if (type == null) {
-      type = Object;
-    }
-
-    const instance = new type();
-    XmlReader.getInstance().read(instance, typename, xml, schema);
-    return instance;
-  }
-}
-
-class Bcf {
-    constructor() {
-        this.markups = new Map();
-        this.viewpoints = new Map();
-    }
-
-    addMarkupFromXml(bcfXml) {
-        const markupXml = bcfXml.querySelector('Markup');
-        const markup = BcfFactory.getInstance().createInstanceFromXml('Markup', markupXml, bcf_2_1);
-        this.markups.set(markup.Topic.Guid, markup);
-
-        return markup;
-    }
-
-    addVisualizationInfoFromXml(topicGuid, filename, bcfvXml) {
-        const markup = this.markups.get(topicGuid);
-        if(markup == null) {
-            return;
-        }
-
-        const visualizationInfoXml = bcfvXml.querySelector('VisualizationInfo');
-        const visualizationInfo = BcfFactory.getInstance().createInstanceFromXml('VisualizationInfo', visualizationInfoXml, bcf_2_1);
-        markup.addVisualizationInfo(filename, visualizationInfo);
-
-        return visualizationInfo;
-    }
-}
-
-class BcfLoader {
-  constructor() {}
-
-  loadFile(file) {
-    return new Promise((resolve) => {
-      const bcf = new Bcf();
-
-      JSZip.loadAsync(file).then(async function (zip) {
-        const bcfPromises = [];
-        const bcfvPromises = [];
-        const pngPromises = [];
-
-        const parser = new DOMParser();
-
-        zip.forEach(function (relativePath, zipEntry) {
-          if (zipEntry.name.endsWith(".bcf") == false) {
-            return;
-          }
-
-          bcfPromises.push(new Promise(async markupResolve => {
-            const bcfContent = await zipEntry.async("string");
-            const xmlBcfContent = parser.parseFromString(bcfContent, "text/xml");
-            console.log("add markup");
-            markupResolve(bcf.addMarkupFromXml(xmlBcfContent));
-          }));
-        });
-        await Promise.all(bcfPromises);
-
-        zip.forEach(function (relativePath, zipEntry) {
-          console.log("Reading: " + relativePath);
-          if (zipEntry.name.endsWith(".bcfv")) {
-            bcfvPromises.push(new Promise(async bcfvResolve => {
-              const splitName = zipEntry.name.split("/");
-              const bcfGuid = splitName[0];
-              const bcfvContent = await zipEntry.async("string");
-              const xmlBcfvContent = parser.parseFromString(bcfvContent, "text/xml");
-              bcfvResolve(bcf.addVisualizationInfoFromXml(bcfGuid, splitName[1], xmlBcfvContent));
-            }));
-          }
-          
-          if (zipEntry.name.endsWith(".png")) {
-            pngPromises.push(new Promise(async pngResolve => {
-              const splitName = zipEntry.name.split("/");
-              const bcfGuid = splitName[0];
-              const markup = bcf.markups.get(bcfGuid);
-              if(markup == null) {
-                return;
-              }
-
-              const pngContent = await zipEntry.async("base64");
-              pngResolve(markup.addSnapshot(splitName[1], pngContent));
-            }));
-          }
-        });
-        await Promise.all(bcfvPromises);
-        await Promise.all(pngPromises);
-
-        resolve(bcf);
-      });
-    });
-  }
-}
-
 class Picker {
     constructor(selectionModel, canvas, scene, camera, renderer) {
         this.selectionModel = selectionModel;
@@ -90209,335 +90542,40 @@ class Picker {
     }
 }
 
-class Markers {
-    static get LATE() {return 'LATE'}
-    static get CAMERA() {return 'CAMERA'}
+class SelectionModel {
+    constructor(ifcManager, viewer) {
+        this.ifcManager = ifcManager;
+        this.viewer = viewer;
 
-    constructor(scene) {
-        this.scene = scene;
-
-        this.materials = new Map();
-        this.materials.set(Markers.LATE, this.createMarkerMaterial('../res/images/warning.png'));
-        this.materials.set(Markers.CAMERA, this.createMarkerMaterial('../res/images/camera.png'));
+        this.selecetionMaterial = new MeshLambertMaterial({
+            color: 0x00ff00,
+            transparent: true,
+            opacity: 0.8,
+            depthTest: false
+        });
     }
 
-    createMarkerMaterial(src) {
-        const map = new TextureLoader().load(src);
-        const material = new SpriteMaterial({ map: map, sizeAttenuation: false, depthTest: false });
-        return material;
-    }
-
-    addMarker(type, position) {
-        const sprite = new Sprite(this.materials.get(type));
-        sprite.position.set( position.x, position.y, position.z );
-        const spriteScale = 0.08;
-        sprite.scale.set(spriteScale, spriteScale, spriteScale);
-        this.scene.add(sprite);
-    }
-}
-
-class Splitter {
-    constructor(splitterDiv) {
-        this.splitterDiv = splitterDiv;
-        this.parentContainer = this.splitterDiv.parentElement;
-        this.prevPanel = this.splitterDiv.previousElementSibling;
-        this.nextPanel = this.splitterDiv.nextElementSibling;
-
-        this.splitterDiv.style.backgroundColor = window.getComputedStyle(this.nextPanel, null).getPropertyValue('background-color');
-
-        this.dragging = false;
-
-        this.splitterDiv.addEventListener('mousedown', (e) => {
-            this.dragging = true;
-        });
-
-        window.addEventListener('mouseup', (e) => {
-            this.dragging = false;
-        });
-
-        document.addEventListener('mouseleave', (e) => {
-            this.dragging = false;
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (this.dragging !== true) {
-                return;
+    selectObjectByGuid(guid, removePrevious=true) {
+        for (const [modelID, guidMap] of this.viewer.guidMaps) {
+            if(guidMap.has(guid) == false) {
+                continue;
             }
 
-            this.resize(e);
+            const expressID = guidMap.get(guid);
+
+            this.selectObject(modelID, expressID, removePrevious);
+            break;
+        }
+    }
+
+    selectObject(modelID, expressID, removePrevious=true) {
+        this.ifcManager.createSubset({
+            modelID: modelID,
+            scene: this.viewer.scene,
+            ids: [expressID],
+            removePrevious: removePrevious,
+            material: this.selecetionMaterial,
         });
-
-        this.resize();
-    }
-
-    resize(e) {
-        if (this.splitterDiv.classList.contains('left-splitter')) {
-            this.moveLeft(e);
-        } else if (this.splitterDiv.classList.contains('bottom-splitter')) {
-            this.moveBottom(e);
-        }
-
-        if (e != null && typeof this.onResize === 'function') {
-            this.onResize();
-        }
-    }
-
-    moveLeft(e) {
-        if (this.splitterPosition == null) {
-            this.splitterPosition = this.nextPanel.clientWidth;
-        }
-
-        if (this.prevPanel.style.display === 'none') {
-            this.nextPanel.style.width = '100%';
-            return;
-        }
-
-        if (this.nextPanel.style.display === 'none') {
-            this.prevPanel.style.width = '100%';
-            return;
-        }
-
-        const movementX = e == null ? 0 : e.movementX;
-        const parentWidth = this.parentContainer.clientWidth;
-        this.splitterPosition -= movementX;
-        this.nextPanel.style.width = this.splitterPosition;
-
-        this.prevPanel.style.width = parentWidth - this.splitterPosition - this.splitterDiv.clientWidth;
-    }
-
-    moveBottom(e) {
-        if (this.splitterPosition == null) {
-            this.splitterPosition = this.nextPanel.clientHeight;
-        }
-
-        if (this.prevPanel.style.display === 'none') {
-            this.nextPanel.style.height = '100%';
-            return;
-        }
-
-        if (this.nextPanel.style.display === 'none') {
-            this.prevPanel.style.height = '100%';
-            return;
-        }
-
-        const movement = e == null ? 0 : e.movementY;
-        const parentHeight = this.parentContainer.clientHeight;
-        this.splitterPosition -= movement;
-        this.nextPanel.style.height = this.splitterPosition;
-
-        this.prevPanel.style.height = parentHeight - this.splitterPosition - this.splitterDiv.clientHeight;
-    }
-
-    hideLeft() {
-        this.nextPanel.style.display = 'none';
-        this.splitterDiv.style.display = 'none';
-
-        this.prevPanel.style.width = '100%';
-
-        this.onResize();
-    }
-
-    showLeft() {
-        this.nextPanel.style.display = 'block';
-        this.splitterDiv.style.display = 'block';
-
-        this.resize({ movementX: 0, movementY: 0 });
-    }
-}
-
-class BcfViewer {
-    constructor(parent) {
-        this.parent = parent;
-        this.bcfPanel = document.getElementById('bcf-panel');
-        this.topicsContainer = document.getElementById('bcf-topics');
-
-        this.bcfSplitter = document.getElementById('bcf-splitter');
-        this.splitter = new Splitter(this.bcfSplitter);
-        this.splitter.onResize = () => {
-            this.parent.resize();
-        };
-
-        this.hideBcfPanel();
-
-
-        this.createBcfLoader();
-    }
-
-    resize() {
-        this.splitter.resize();
-    }
-
-    hideBcfPanel() {
-        this.splitter.hideLeft();
-    }
-
-    showBcfPanel() {
-        this.splitter.showLeft();
-    }
-
-    createBcfLoader() {
-        const bcfLoader = new BcfLoader();
-        const inputBcf = document.getElementById("file-input-bcf");
-        inputBcf.addEventListener(
-            "change",
-            (changed) => {
-                const file = changed.target.files[0];
-                bcfLoader.loadFile(file).then(bcf => {
-                    this.showBcfPanel();
-                    this.loadTopics(bcf);
-                    this.addMarkers(bcf);
-                });
-            },
-            false
-        );
-    }
-
-    loadTopics(bcf) {
-        while (this.topicsContainer.firstChild) {
-            this.topicsContainer.removeChild(this.topicsContainer.firstChild);
-        }
-
-        for (let markup of bcf.markups.values()) {
-            const topic = markup.Topic;
-            const topicContainer = document.createElement('div');
-            topicContainer.classList.add('snapshot-thumbs-container');
-            topicContainer.style.marginBottom = "5px";
-            this.topicsContainer.appendChild(topicContainer);
-
-            const title = document.createElement('p');
-            title.classList.add('snapshot-thumbs-title');
-            title.innerHTML = topic.Title;
-            topicContainer.appendChild(title);
-
-            // this.addTopicAttribute('Guid', topic, topicContainer);
-            // this.addTopicAttribute('TopicType', topic, topicContainer);
-            // this.addTopicAttribute('TopicStatus', topic, topicContainer);
-            // this.addTopicAttribute('CreationDate', topic, topicContainer);
-            // this.addTopicAttribute('CreationAuthor', topic, topicContainer);
-            // this.addTopicAttribute('Priority', topic, topicContainer);
-            // this.addTopicAttribute('Index', topic, topicContainer);
-            // this.addTopicAttribute('ModifiedDate', topic, topicContainer);
-            // this.addTopicAttribute('ModifiedAuthor', topic, topicContainer);
-
-            const snapshotsDiv = document.createElement('div');
-            snapshotsDiv.classList.add('snapshot-thumbs');
-            topicContainer.appendChild(snapshotsDiv);
-
-            markup.Viewpoints.forEach(viewpoint => {
-                this.addTopicViewpoint(viewpoint, markup, snapshotsDiv);
-            });
-        }
-    }
-
-    addTopicAttribute(attribute, topic, target) {
-        const p = document.createElement('p');
-        p.innerHTML = attribute + ': ' + topic[attribute];
-        target.appendChild(p);
-    }
-
-    addTopicViewpoint(viewpoint, markup, target) {
-        const snapshotDiv = document.createElement('div');
-        snapshotDiv.classList.add('snapshot-thumb');
-        snapshotDiv.addEventListener('click', (e) => {
-            const vsInfo = markup.VisualizationInfos.get(viewpoint.Viewpoint);
-            if (vsInfo == null) {
-                console.log('no VisualizationInfo');
-                return;
-            }
-
-            console.log(vsInfo);
-
-            if (vsInfo.PerspectiveCamera != null) {
-                const camera = vsInfo.PerspectiveCamera;
-                const cameraViewPoint = camera.CameraViewPoint;
-                const cameraDirection = camera.CameraDirection;
-
-                this.parent.setCamera({
-                    position: {
-                        x: cameraViewPoint.X,
-                        y: cameraViewPoint.Z,
-                        z: -cameraViewPoint.Y,
-                    },
-                    target: {
-                        x: cameraViewPoint.X + cameraDirection.X,
-                        y: cameraViewPoint.Z + cameraDirection.Z,
-                        z: cameraViewPoint.Y - cameraDirection.Y,
-                    }
-                });
-            }
-
-            const components = vsInfo.Components.Selection.Component;
-            let removePrevious = true;
-            components.forEach(component => {
-                this.parent.selectionModel.selectObjectByGuid(component.IfcGuid, removePrevious);
-                removePrevious = false;
-            });
-        });
-        target.appendChild(snapshotDiv);
-
-        const snapshot = markup.Snapshots.get(viewpoint.Snapshot);
-        const img = document.createElement('img');
-        img.src = snapshot;
-        snapshotDiv.appendChild(img);
-
-        // this.addComments(viewpoint, markup, snapshotDiv);
-    }
-
-    addComments(viewpoint, markup, target) {
-        markup.Comment.forEach(comment => {
-            if (comment.Viewpoint == null || comment.Viewpoint.Guid == null) {
-                return;
-            }
-
-            if (comment.Viewpoint.Guid !== viewpoint.Guid) {
-                return;
-            }
-
-            const commentDiv = document.createElement('div');
-            commentDiv.style.border = "1px solid #000";
-            commentDiv.style.padding = "5px";
-            commentDiv.style.margin = "5px";
-            target.appendChild(commentDiv);
-
-            const authorP = document.createElement('p');
-            authorP.innerHTML = 'Author: ' + comment.Author;
-            commentDiv.appendChild(authorP);
-
-            const dateP = document.createElement('p');
-            dateP.innerHTML = 'Date: ' + comment.Date;
-            commentDiv.appendChild(dateP);
-
-            const commentP = document.createElement('p');
-            commentP.innerHTML = 'Comment: ' + comment.Comment;
-            commentDiv.appendChild(commentP);
-        });
-    }
-
-    addMarkers(bcf) {
-        for (let markup of bcf.markups.values()) {
-            markup.Viewpoints.forEach(viewpoint => {
-                const vsInfo = markup.VisualizationInfos.get(viewpoint.Viewpoint);
-                if (vsInfo == null) {
-                    return;
-                }
-
-                console.log(vsInfo);
-
-                if (vsInfo.PerspectiveCamera != null) {
-                    const camera = vsInfo.PerspectiveCamera;
-                    const cameraViewPoint = camera.CameraViewPoint;
-                    camera.CameraDirection;
-
-                    const position = {
-                        x: cameraViewPoint.X,
-                        y: cameraViewPoint.Z,
-                        z: -cameraViewPoint.Y,
-                    };
-
-                    this.parent.markers.addMarker(Markers.CAMERA, position);
-                }
-            });
-        }
     }
 }
 
@@ -92488,45 +92526,45 @@ var createPopper = /*#__PURE__*/popperGenerator({
 }); // eslint-disable-next-line import/no-unused-modules
 
 var Popper = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	popperGenerator: popperGenerator,
-	detectOverflow: detectOverflow,
-	createPopperBase: createPopper$2,
-	createPopper: createPopper,
-	createPopperLite: createPopper$1,
-	top: top,
-	bottom: bottom,
-	right: right,
-	left: left,
-	auto: auto,
-	basePlacements: basePlacements,
-	start: start,
-	end: end,
-	clippingParents: clippingParents,
-	viewport: viewport,
-	popper: popper,
-	reference: reference,
-	variationPlacements: variationPlacements,
-	placements: placements,
-	beforeRead: beforeRead,
-	read: read$1,
-	afterRead: afterRead,
-	beforeMain: beforeMain,
-	main: main,
-	afterMain: afterMain,
-	beforeWrite: beforeWrite,
-	write: write,
-	afterWrite: afterWrite,
-	modifierPhases: modifierPhases,
-	applyStyles: applyStyles$1,
-	arrow: arrow$1,
-	computeStyles: computeStyles$1,
-	eventListeners: eventListeners,
-	flip: flip$1,
-	hide: hide$1,
-	offset: offset$1,
-	popperOffsets: popperOffsets$1,
-	preventOverflow: preventOverflow$1
+  __proto__: null,
+  popperGenerator: popperGenerator,
+  detectOverflow: detectOverflow,
+  createPopperBase: createPopper$2,
+  createPopper: createPopper,
+  createPopperLite: createPopper$1,
+  top: top,
+  bottom: bottom,
+  right: right,
+  left: left,
+  auto: auto,
+  basePlacements: basePlacements,
+  start: start,
+  end: end,
+  clippingParents: clippingParents,
+  viewport: viewport,
+  popper: popper,
+  reference: reference,
+  variationPlacements: variationPlacements,
+  placements: placements,
+  beforeRead: beforeRead,
+  read: read$1,
+  afterRead: afterRead,
+  beforeMain: beforeMain,
+  main: main,
+  afterMain: afterMain,
+  beforeWrite: beforeWrite,
+  write: write,
+  afterWrite: afterWrite,
+  modifierPhases: modifierPhases,
+  applyStyles: applyStyles$1,
+  arrow: arrow$1,
+  computeStyles: computeStyles$1,
+  eventListeners: eventListeners,
+  flip: flip$1,
+  hide: hide$1,
+  offset: offset$1,
+  popperOffsets: popperOffsets$1,
+  preventOverflow: preventOverflow$1
 });
 
 /*!
@@ -97558,7 +97596,7 @@ class IfcPropertyViewer {
         const mainTab = this.createTab(props.constructor.name, this.createTable(props));
         mainTab.show();
 
-
+        this.createPSetTabs(props);
     }
 
     createTable(propertyGroup) {
@@ -97573,20 +97611,46 @@ class IfcPropertyViewer {
 
             const value = property.value;
 
-            const tableRow = document.createElement('tr');
-            
-            const nameCell = document.createElement('td');
-            nameCell.classList.add('ifc-property-name');
-            nameCell.innerHTML = propertyName;
-            
-            const valueCell = document.createElement('td');
-            valueCell.classList.add('ifc-property-value');
-            valueCell.innerHTML = value;
+            this.addTableRow(table, propertyName, value);
+        }
 
-            tableRow.appendChild(nameCell);
-            tableRow.appendChild(valueCell);
+        return table;
+    }
 
-            table.appendChild(tableRow);
+    addTableRow(table, name, value) {
+        const tableRow = document.createElement('tr');
+            
+        const nameCell = document.createElement('td');
+        nameCell.classList.add('ifc-property-name');
+        nameCell.innerHTML = name;
+        
+        const valueCell = document.createElement('td');
+        valueCell.classList.add('ifc-property-value');
+        valueCell.innerHTML = value;
+
+        tableRow.appendChild(nameCell);
+        tableRow.appendChild(valueCell);
+
+        table.appendChild(tableRow);
+    }
+
+    createPSetTabs(props) {
+        if(props == null || props.psets == null) {
+            return;
+        }
+
+        for(let propertySet of props.psets) {
+            this.createPSetTable(propertySet);
+            this.createTab(propertySet.Name.value, this.createPSetTable(propertySet));
+        }
+    }
+
+    createPSetTable(propertySet) {
+        const table = document.createElement('table');
+        table.classList.add('ifc-property-table');
+
+        for(let property of propertySet.HasProperties) {
+            this.addTableRow(table, property.Name.value, property.NominalValue.value);
         }
 
         return table;
@@ -97632,47 +97696,16 @@ class IfcPropertyViewer {
     }
 }
 
-class SelectionModel {
-    constructor(ifcManager, viewer) {
-        this.ifcManager = ifcManager;
-        this.viewer = viewer;
+class IfcView {
+    constructor(parent) {
+        this.parent = parent;
 
-        this.selecetionMaterial = new MeshLambertMaterial({
-            color: 0xf61e61,
-            transparent: true,
-            opacity: 0.8,
-            depthTest: false
-        });
-    }
+        this.globalTranslation = { x: 0, y: 0, z: 0 };
 
-    selectObjectByGuid(guid, removePrevious=true) {
-        for (const [modelID, guidMap] of this.viewer.guidMaps) {
-            if(guidMap.has(guid) == false) {
-                continue;
-            }
-
-            const expressID = guidMap.get(guid);
-
-            this.selectObject(modelID, expressID, removePrevious);
-            break;
-        }
-    }
-
-    selectObject(modelID, expressID, removePrevious=true) {
-        this.ifcManager.createSubset({
-            modelID: modelID,
-            scene: this.viewer.scene,
-            ids: [expressID],
-            removePrevious: removePrevious,
-            material: this.selecetionMaterial,
-        });
-    }
-}
-
-class Viewer {
-    constructor() {
         this.canvas = document.getElementById("three-canvas");
         this.modelContainer = document.getElementById("model-panel");
+        this.loadingContainer = document.getElementById("model-panel-loading");
+        this.progressIndicator = document.getElementById('model-panel-loading-progress');
 
         this.createScene();
         this.createCamera();
@@ -97681,22 +97714,12 @@ class Viewer {
         this.createRenderer();
         this.createControls();
 
-        window.addEventListener("resize", () => {
-            this.resize();
-        });
-
-        this.createIfcViewer();
-
-        this.markers = new Markers(this.scene);
-        // markers.addMarker(Markers.LATE);
+        this.createIfcLoader();
 
         this.animate();
 
-        this.createBcfPanel();
-
+        this.markers = new Markers(this.scene);
         this.ifcPropertyViewer = new IfcPropertyViewer(this);
-
-        this.resize();
     }
 
     createScene() {
@@ -97747,27 +97770,41 @@ class Viewer {
     }
 
     createControls() {
+        // TODO: use pivot controls
         this.controls = new OrbitControls(this.camera, this.canvas);
         this.controls.enableDamping = true;
         this.controls.target.set(-2, 0, 0);
     }
 
-    createIfcViewer() {
+    createIfcLoader() {
         const ifcLoader = new IFCLoader();
 
         this.selectionModel = new SelectionModel(ifcLoader.ifcManager, this);
 
         this.guidMaps = new Map();
+        this.models = [];
 
         const inputIfc = document.getElementById("file-input-ifc");
         inputIfc.addEventListener(
             "change",
             (changed) => {
                 const file = changed.target.files[0];
+                if (file == null) {
+                    return;
+                }
+
+                this.showLoading();
                 var ifcURL = URL.createObjectURL(file);
                 ifcLoader.load(
                     ifcURL,
-                    (ifcModel) => this.onModelCreated(ifcModel));
+                    (ifcModel) => {
+                        this.onModelCreated(ifcModel);
+                        this.hideLoading();
+                    },
+                    (progressEvent) => {
+                        const progress = 100 * progressEvent.loaded / progressEvent.total;
+                        this.setProgress(progress);
+                    });
             },
             false
         );
@@ -97776,6 +97813,9 @@ class Viewer {
     }
 
     onModelCreated(ifcModel) {
+        this.models.push(ifcModel);
+        this.centerModels(ifcModel);
+
         this.scene.add(ifcModel);
 
         this.ifcManager = ifcModel.ifcManager;
@@ -97787,22 +97827,58 @@ class Viewer {
         for (const [eId, guid] of expressToGuidMap) {
             guidToExpressMap.set(guid, eId);
         }
-        
+
         this.guidMaps.set(modelID, guidToExpressMap);
     }
 
-    selectObject(modelID, expressID) {
-        this.ifcManager.createSubset({
-            modelID: modelID,
-            scene: this.scene,
-            ids: [expressID],
-            removePrevious: true,
-            material: this.selecetionMaterial,
-        });
+    centerModels() {
+        let maxX = Number.MIN_VALUE;
+        let maxY = Number.MIN_VALUE;
+        let maxZ = Number.MIN_VALUE;
+
+        let minX = Number.MAX_VALUE;
+        let minY = Number.MAX_VALUE;
+        let minZ = Number.MAX_VALUE;
+
+        this.scene.position.x = 0;
+        this.scene.position.y = 0;
+        this.scene.position.z = 0;
+
+        for (let model of this.models) {
+            // model.position.x = 0;
+            // model.position.y = 0;
+            // model.position.z = 0;
+            if(model.geometry.boundingBox == null) {
+                model.geometry.computeBoundingBox();
+            }
+
+            maxX = Math.max(maxX, model.geometry.boundingBox.max.x);
+            maxY = Math.max(maxY, model.geometry.boundingBox.max.y);
+            maxZ = Math.max(maxZ, model.geometry.boundingBox.max.z);
+
+            minX = Math.min(minX, model.geometry.boundingBox.min.x);
+            minY = Math.min(minY, model.geometry.boundingBox.min.y);
+            minZ = Math.min(minZ, model.geometry.boundingBox.min.z);
+        }
+
+        this.globalTranslation.x = (minX + maxX) / 2;
+        this.globalTranslation.y = (minY + maxY) / 2;
+        this.globalTranslation.z = (minZ + maxZ) / 2;
+
+        // for (let model of this.models) {
+        //     model.position.x = -this.globalTranslation.x;
+        //     model.position.y = -this.globalTranslation.y;
+        //     model.position.z = -this.globalTranslation.z;
+        // }
+
+        this.scene.position.x = -this.globalTranslation.x;
+        this.scene.position.y = -this.globalTranslation.y;
+        this.scene.position.z = -this.globalTranslation.z;
     }
 
     createPicker() {
         const picker = new Picker(this.selectionModel, this.canvas, this.scene, this.camera, this.renderer);
+
         let mousedownX = 0;
         let mousedownY = 0;
 
@@ -97830,10 +97906,6 @@ class Viewer {
         });
     }
 
-    createBcfPanel() {
-        this.bcfViewer = new BcfViewer(this);
-    }
-
     animate() {
         this.controls.update();
         this.renderer.render(this.scene, this.camera);
@@ -97847,10 +97919,6 @@ class Viewer {
         this.renderer.setSize(this.size.width, this.size.height);
         this.camera.updateProjectionMatrix();
 
-        if (this.bcfViewer != null) {
-            this.bcfViewer.resize();
-        }
-
         if (this.ifcPropertyViewer != null) {
             this.ifcPropertyViewer.resize();
         }
@@ -97862,6 +97930,56 @@ class Viewer {
         this.camera.position.x = props.position.x;
 
         this.camera.lookAt(props.target);
+
+        this.camera.position.x = -this.globalTranslation.x;
+        this.camera.position.y = -this.globalTranslation.y;
+        this.camera.position.z = -this.globalTranslation.z;
+    }
+
+    setProgress(value) {
+        this.progressIndicator.setAttribute('style', 'width:' + Number(value) + '%');
+        this.progressIndicator.setAttribute('aria-valuenow', value);
+    }
+
+    showLoading() {
+        this.setProgress(0);
+        this.loadingContainer.style.display = 'flex';
+    }
+
+    hideLoading() {
+        this.setProgress(0);
+        this.loadingContainer.style.display = 'none';
+    }
+}
+
+class Viewer {
+    constructor() {
+        this.createIfcPanel();
+        this.createBcfPanel();
+
+        window.addEventListener("resize", () => {
+            this.resize();
+        });
+
+        this.resize();
+    }
+
+    resize() {
+        if (this.ifcView != null) {
+            this.ifcView.resize();
+        }
+
+        if (this.bcfView != null) {
+            this.bcfView.resize();
+        }
+    }
+
+    createIfcPanel() {
+        this.ifcView = new IfcView(this);
+    }
+
+    createBcfPanel() {
+        this.bcfView = new BcfView(this);
     }
 }
 

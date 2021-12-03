@@ -1,5 +1,5 @@
 import { Tab } from "bootstrap";
-import Splitter from "./Splitter";
+import Splitter from "../Splitter";
 
 let tabId = 0;
 
@@ -34,7 +34,7 @@ export default class IfcPropertyViewer {
         const mainTab = this.createTab(props.constructor.name, this.createTable(props));
         mainTab.show();
 
-
+        this.createPSetTabs(props);
     }
 
     createTable(propertyGroup) {
@@ -49,20 +49,46 @@ export default class IfcPropertyViewer {
 
             const value = property.value;
 
-            const tableRow = document.createElement('tr');
-            
-            const nameCell = document.createElement('td');
-            nameCell.classList.add('ifc-property-name');
-            nameCell.innerHTML = propertyName;
-            
-            const valueCell = document.createElement('td');
-            valueCell.classList.add('ifc-property-value');
-            valueCell.innerHTML = value;
+            this.addTableRow(table, propertyName, value);
+        }
 
-            tableRow.appendChild(nameCell);
-            tableRow.appendChild(valueCell);
+        return table;
+    }
 
-            table.appendChild(tableRow);
+    addTableRow(table, name, value) {
+        const tableRow = document.createElement('tr');
+            
+        const nameCell = document.createElement('td');
+        nameCell.classList.add('ifc-property-name');
+        nameCell.innerHTML = name;
+        
+        const valueCell = document.createElement('td');
+        valueCell.classList.add('ifc-property-value');
+        valueCell.innerHTML = value;
+
+        tableRow.appendChild(nameCell);
+        tableRow.appendChild(valueCell);
+
+        table.appendChild(tableRow);
+    }
+
+    createPSetTabs(props) {
+        if(props == null || props.psets == null) {
+            return;
+        }
+
+        for(let propertySet of props.psets) {
+            this.createPSetTable(propertySet);
+            this.createTab(propertySet.Name.value, this.createPSetTable(propertySet));
+        }
+    }
+
+    createPSetTable(propertySet) {
+        const table = document.createElement('table');
+        table.classList.add('ifc-property-table');
+
+        for(let property of propertySet.HasProperties) {
+            this.addTableRow(table, property.Name.value, property.NominalValue.value)
         }
 
         return table;

@@ -1,8 +1,8 @@
-import BcfLoader from "../../bcf-utils/src/access/bcf-loader";
-import Markers from "./Markers";
-import Splitter from "./Splitter";
+import BcfLoader from "bcf-utils/src/access/bcf-loader";
+import Markers from "../ifc/Markers";
+import Splitter from "../Splitter";
 
-export default class BcfViewer {
+export default class BcfView {
     constructor(parent) {
         this.parent = parent;
         this.bcfPanel = document.getElementById('bcf-panel');
@@ -95,7 +95,7 @@ export default class BcfViewer {
     addTopicViewpoint(viewpoint, markup, target) {
         const snapshotDiv = document.createElement('div');
         snapshotDiv.classList.add('snapshot-thumb');
-        snapshotDiv.addEventListener('click', (e) => {
+        snapshotDiv.addEventListener('dblclick', (e) => {
             const vsInfo = markup.VisualizationInfos.get(viewpoint.Viewpoint);
             if (vsInfo == null) {
                 console.log('no VisualizationInfo');
@@ -109,7 +109,7 @@ export default class BcfViewer {
                 const cameraViewPoint = camera.CameraViewPoint;
                 const cameraDirection = camera.CameraDirection;
 
-                this.parent.setCamera({
+                this.parent.ifcView.setCamera({
                     position: {
                         x: cameraViewPoint.X,
                         y: cameraViewPoint.Z,
@@ -126,7 +126,7 @@ export default class BcfViewer {
             const components = vsInfo.Components.Selection.Component;
             let removePrevious = true;
             components.forEach(component => {
-                this.parent.selectionModel.selectObjectByGuid(component.IfcGuid, removePrevious);
+                this.parent.ifcView.selectionModel.selectObjectByGuid(component.IfcGuid, removePrevious);
                 removePrevious = false;
             });
         })
@@ -191,7 +191,7 @@ export default class BcfViewer {
                         z: -cameraViewPoint.Y,
                     }
 
-                    this.parent.markers.addMarker(Markers.CAMERA, position);
+                    this.parent.ifcView.markers.addMarker(Markers.CAMERA, position);
                 }
             });
         }

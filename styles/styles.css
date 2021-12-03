@@ -29,17 +29,27 @@ body {
     justify-content: flex-start;
 }
 
-.nav-button {
-    // padding-top: 10px;
-    // padding-bottom: 10px;
-    // float: left;
-}
-
 #ifc-panel {
 }
 
 #model-panel {
-    background: linear-gradient(0deg, rgb(102 99 143) 0%, rgb(220 224 255) 100%);
+    position: relative;
+    background: linear-gradient(0deg, rgb(220 224 255) 0%, rgb(85 110 129) 100%);
+}
+
+#model-panel-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    display: none;
+}
+
+#model-panel-loading .progress {
+    width: 50%;
 }
 
 #ifc-property-panel {
@@ -68,13 +78,11 @@ body {
 }
 
 #bcf-panel {
-    /* position: absolute;
-    top: 0;
-    right: 0; */
     z-index: 500;
     background-color: white;
     width: 30%;
     height: 100%;
+    padding: 8px 8px 0 0;
 }
 
 .vertical-splitter {
@@ -159,8 +167,15 @@ body {
 .ifc-property-table td {
     border-color: slategrey;
     border-width: 1px;
+    padding-left: 5px;
+    padding-right: 10px;
 }
 
 .ifc-property-name {
     background-color: lightgray;
+    white-space: nowrap;
+}
+
+.ifc-property-value {
+    width: 100%;
 }

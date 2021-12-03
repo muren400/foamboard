@@ -6,7 +6,7 @@ export default class SelectionModel {
         this.viewer = viewer;
 
         this.selecetionMaterial = new MeshLambertMaterial({
-            color: 0xf61e61,
+            color: 0x00ff00,
             transparent: true,
             opacity: 0.8,
             depthTest: false
